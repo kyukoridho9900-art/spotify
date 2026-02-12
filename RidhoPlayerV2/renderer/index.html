@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Ridho Player</title>
+  <link rel="stylesheet" href="./styles.css"/>
+</head>
+<body>
+  <div class="shell">
+    <aside class="side">
+      <div class="brand">
+        <div class="logo">RP</div>
+        <div class="btxt">
+          <div class="bname">Ridho Player</div>
+          <div class="btag">Offline • Local Music</div>
+        </div>
+      </div>
+
+      <div class="nav">
+        <button class="navBtn active" data-view="home">
+          <span class="ico">⌂</span> Home
+        </button>
+        <button class="navBtn" data-view="search">
+          <span class="ico">⌕</span> Search
+        </button>
+        <button class="navBtn" data-view="library">
+          <span class="ico">☰</span> Your Library
+        </button>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="libActions">
+        <button id="pickFolder" class="primary">+ Pilih Folder Musik</button>
+        <div id="folderPath" class="hint">Belum ada folder dipilih</div>
+      </div>
+
+      <div class="playlists">
+        <div class="plTitle">Playlists</div>
+        <button id="likedBtn" class="plBtn"><span class="heart">♥</span> Liked Songs</button>
+        <div class="plHint">* Playlist lokal (disimpan di app)</div>
+      </div>
+
+      <div class="footerNote">
+        <div class="small">Shortcut:</div>
+        <div class="small">Space play/pause • N/P next/prev • ←/→ seek</div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="top">
+        <div class="topLeft">
+          <div class="pill" id="statusPill">Ready</div>
+        </div>
+
+        <div class="searchBar">
+          <input id="searchInput" placeholder="Cari lagu, artis, album..." />
+        </div>
+
+        <div class="topRight">
+          <button id="shuffleBtn" class="ghost">Shuffle</button>
+          <button id="sortBtn" class="ghost">A–Z</button>
+        </div>
+      </header>
+
+      <section class="content">
+        <div id="view-home" class="view active">
+          <div class="hero">
+            <div class="heroLeft">
+              <div class="hTitle">Selamat datang 👋</div>
+              <div class="hSub">Pilih folder musik kamu, lalu nikmati UI ala Spotify tapi offline.</div>
+              <div class="quickRow">
+                <div class="chip" id="chipFolder">No folder</div>
+                <div class="chip" id="chipCount">0 tracks</div>
+              </div>
+            </div>
+            <div class="heroRight">
+              <div class="glowCard">
+                <div class="gcTitle">Now Playing</div>
+                <div class="gcLine" id="npLine">Belum ada lagu</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sectionTitle">Quick picks</div>
+          <div id="quickGrid" class="grid"></div>
+
+          <div class="sectionTitle">Recently added</div>
+          <div id="recentGrid" class="grid"></div>
+        </div>
+
+        <div id="view-search" class="view">
+          <div class="sectionTitle">Search results</div>
+          <div class="tableHead">
+            <div>#</div><div>Title</div><div>Artist</div><div>Album</div><div class="r">Time</div>
+          </div>
+          <div id="searchList" class="table"></div>
+        </div>
+
+        <div id="view-library" class="view">
+          <div class="sectionTitle">Your Library</div>
+          <div class="tableHead">
+            <div>#</div><div>Title</div><div>Artist</div><div>Album</div><div class="r">Time</div>
+          </div>
+          <div id="libraryList" class="table"></div>
+        </div>
+
+        <div id="view-liked" class="view">
+          <div class="sectionTitle">Liked Songs</div>
+          <div class="tableHead">
+            <div>#</div><div>Title</div><div>Artist</div><div>Album</div><div class="r">Time</div>
+          </div>
+          <div id="likedList" class="table"></div>
+        </div>
+      </section>
+
+      <footer class="player">
+        <div class="np">
+          <div class="coverWrap">
+            <img id="coverImg" alt="cover" />
+            <div id="coverFallback" class="coverFallback">♪</div>
+          </div>
+          <div class="npMeta">
+            <div id="nowTitle" class="npTitle">Belum ada lagu</div>
+            <div id="nowArtist" class="npArtist">—</div>
+          </div>
+          <button id="likeBtn" class="likeBtn" title="Like">♡</button>
+        </div>
+
+        <div class="ctrl">
+          <div class="ctrlBtns">
+            <button id="prevBtn" class="iconBtn" title="Previous (P)">⏮</button>
+            <button id="playBtn" class="playBtn" title="Play/Pause (Space)">▶</button>
+            <button id="nextBtn" class="iconBtn" title="Next (N)">⏭</button>
+          </div>
+          <div class="seekRow">
+            <div class="time" id="tCur">0:00</div>
+            <input id="seek" type="range" min="0" max="1000" value="0"/>
+            <div class="time" id="tDur">0:00</div>
+          </div>
+        </div>
+
+        <div class="right">
+          <div class="volRow">
+            <span class="volIcon">🔊</span>
+            <input id="vol" type="range" min="0" max="100" value="80"/>
+          </div>
+        </div>
+
+        <audio id="audio"></audio>
+      </footer>
+    </main>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>

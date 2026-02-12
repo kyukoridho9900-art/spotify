@@ -1,0 +1,51 @@
+{
+  "name": "ridho-player-v2",
+  "productName": "Ridho Player",
+  "version": "2.0.0",
+  "description": "Offline Spotify-like desktop music player (local files) - Win10 setup",
+  "main": "main.js",
+  "author": "Abhirama Ridho",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win nsis",
+    "pack": "electron-builder --win --dir"
+  },
+  "devDependencies": {
+    "electron": "^30.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "dependencies": {
+    "music-metadata": "^10.7.0"
+  },
+  "build": {
+    "appId": "com.ridho.player",
+    "asar": true,
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "build"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Ridho Player"
+    }
+  }
+}
